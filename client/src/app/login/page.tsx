@@ -82,7 +82,7 @@ export default function LoginPage() {
                   required
                   autoComplete="username"
                   className="block w-full pl-11 pr-4 py-4 bg-slate-50 border-2 border-slate-100 rounded-2xl text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-primary focus:bg-white transition-all font-medium"
-                  placeholder="admin_nutrizi"
+                  placeholder="Nama Pengguna"
                   value={formData.username}
                   onChange={(e) => setFormData({ ...formData, username: e.target.value })}
                   disabled={status === "loading" || status === "success"}
