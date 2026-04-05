@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import api from "@/lib/axios";
 import { cn } from "@/lib/utils";
@@ -10,7 +11,15 @@ export default function Dashboard() {
   const [data, setData] = useState<any>(null);
   const [loading, setLoading] = useState(true);
 
+  const router = useRouter();
+
   useEffect(() => {
+    // Check for user session
+    const user = localStorage.getItem("user");
+    if (!user) {
+      router.replace("/login");
+      return;
+    }
     fetchDashboardData();
   }, [period]);
 
