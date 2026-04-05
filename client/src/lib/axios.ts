@@ -13,9 +13,13 @@ const api = axios.create({
 // This is the ONLY reliable way to detect the browser hostname in a statically
 // generated Next.js page.
 api.interceptors.request.use((config) => {
-  if (typeof window !== 'undefined' &&
-      !window.location.hostname.includes('localhost') &&
-      !window.location.hostname.includes('127.0.0.1')) {
+  // If we are in a browser and the hostname is NOT a local one, 
+  // we MUST be in production.
+  const isLocal = typeof window !== 'undefined' && 
+                 (window.location.hostname === 'localhost' || 
+                  window.location.hostname === '127.0.0.1');
+
+  if (typeof window !== 'undefined' && !isLocal) {
     config.baseURL = 'https://apinutrizi.skalades.biz.id/api';
   } else {
     config.baseURL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000/api';
