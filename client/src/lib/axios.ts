@@ -16,9 +16,10 @@ api.interceptors.response.use(
   (error) => {
     if (error.response && error.response.status === 401) {
       if (typeof window !== 'undefined') {
-        if (!window.location.pathname.includes('/login')) {
-          window.location.href = '/login';
-        }
+        // Temporarily disabled for public access mode
+        // if (!window.location.pathname.includes('/login')) {
+        //   window.location.href = '/login';
+        // }
       }
     }
     return Promise.reject(error);

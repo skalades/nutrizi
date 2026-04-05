@@ -14,12 +14,6 @@ export default function Dashboard() {
   const router = useRouter();
 
   useEffect(() => {
-    // Check for user session
-    const user = localStorage.getItem("user");
-    if (!user) {
-      router.replace("/login");
-      return;
-    }
     fetchDashboardData();
   }, [period]);
 

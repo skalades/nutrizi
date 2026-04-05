@@ -21,11 +21,16 @@ export default function LayoutWrapper({
       setUser(JSON.parse(userJson));
       setIsLoading(false);
     } else {
+      // SET PUBLIC PLACEHOLDER USER
+      const publicUser = {
+        full_name: "Anissa, SKM",
+        username: "anissa_skm",
+        role: "NUTRITIONIST",
+        title: "Ahli Gizi",
+        kitchen_id: 1 // Default to first kitchen
+      };
+      setUser(publicUser);
       setIsLoading(false);
-      // Redirect if not logged in and not on login page
-      if (!isLoginPage) {
-        window.location.href = "/login";
-      }
     }
   }, [pathname, isLoginPage]);
 
